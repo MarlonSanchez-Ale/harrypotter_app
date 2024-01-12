@@ -10,12 +10,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.harrypotter_app.R
 import com.example.harrypotter_app.model.modelData.CharacterItem
+import de.hdodenhof.circleimageview.CircleImageView
 
 class CharacterAdapter(var con: Context, var character: List<CharacterItem>):
     RecyclerView.Adapter<CharacterAdapter.ViewHolder>() {
 
     inner class ViewHolder(v: View) : RecyclerView.ViewHolder(v) {
-        var img = v.findViewById<ImageView>(R.id.imageCharacter)
+        var img = v.findViewById<CircleImageView>(R.id.imageCharacter)
         var name = v.findViewById<TextView>(R.id.txtName)
         var species = v.findViewById<TextView>(R.id.txtSpecies)
         var gender = v.findViewById<TextView>(R.id.txtGender)
@@ -28,7 +29,9 @@ class CharacterAdapter(var con: Context, var character: List<CharacterItem>):
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        Glide.with(con).load(character[position].image).into(holder.img)
+        if (character[position].image.length > 0) {
+            Glide.with(con).load(character[position].image).into(holder.img)
+        } else Glide.with(con).load(R.drawable.avatar_potter).into(holder.img)
         holder.name.text = character[position].name
         holder.species.text = character[position].species
         holder.gender.text = character[position].gender

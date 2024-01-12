@@ -5,26 +5,9 @@
     android:id="@+id/viewContainer"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@color/background"
     android:visibility="visible"
     tools:context=".MainActivity">
-
-    <TextView
-        android:id="@+id/txtTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/metal_mania"
-        android:text="Bienvenidos!"
-        android:textAlignment="center"
-        android:textColor="#FF9800"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.154" />
 
     <TextView
         android:id="@+id/txtSubtitle"
@@ -33,14 +16,31 @@
         android:fontFamily="@font/metal_mania"
         android:text="Personajes de Harry Potter"
         android:textAlignment="center"
-        android:textColor="#2E2D2B"
+        android:textColor="@color/font_primary"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtTitle"
-        app:layout_constraintVertical_bias="0.03" />
+        app:layout_constraintVertical_bias="0.023" />
+
+    <TextView
+        android:id="@+id/txtTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/metal_mania"
+        android:text="Bienvenidos!"
+        android:textAlignment="center"
+        android:textColor="@color/yellow_gryffindor"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.112" />
 
     <SearchView
         android:id="@+id/characterSV"
@@ -57,6 +57,9 @@
         android:id="@+id/rv_character"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:padding="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="0dp"
         app:layout_constraintTop_toBottomOf="@+id/txtSubtitle"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
