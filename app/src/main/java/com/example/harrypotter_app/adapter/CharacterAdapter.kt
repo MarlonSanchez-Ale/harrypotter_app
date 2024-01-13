@@ -14,7 +14,7 @@ import de.hdodenhof.circleimageview.CircleImageView
 
 class CharacterAdapter(var con: Context, var character: List<CharacterItem>):
     RecyclerView.Adapter<CharacterAdapter.ViewHolder>() {
-
+    var onItemClick: ((CharacterItem) -> Unit)? = null
     inner class ViewHolder(v: View) : RecyclerView.ViewHolder(v) {
         var img = v.findViewById<CircleImageView>(R.id.imageCharacter)
         var name = v.findViewById<TextView>(R.id.txtName)
@@ -29,12 +29,17 @@ class CharacterAdapter(var con: Context, var character: List<CharacterItem>):
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        if (character[position].image.length > 0) {
-            Glide.with(con).load(character[position].image).into(holder.img)
+        val currentItem = character[position]
+        if (currentItem.image.length > 0) {
+            Glide.with(con).load(currentItem.image).into(holder.img)
         } else Glide.with(con).load(R.drawable.avatar_potter).into(holder.img)
-        holder.name.text = character[position].name
-        holder.species.text = character[position].species
-        holder.gender.text = character[position].gender
+        holder.name.text = currentItem.name
+        holder.species.text = currentItem.species
+        holder.gender.text = currentItem.gender
+
+        holder.itemView.setOnClickListener {
+            onItemClick?.invoke(currentItem)
+        }
     }
 
     override fun getItemCount(): Int = character.size

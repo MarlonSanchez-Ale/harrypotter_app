@@ -1,5 +1,6 @@
 package com.example.harrypotter_app
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -19,7 +20,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     lateinit var rvMain: RecyclerView
     lateinit var MyAdapter: CharacterAdapter
-
     var BASE_URL = "https://hp-api.onrender.com/api/"
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,6 +33,11 @@ class MainActivity : AppCompatActivity() {
 
         getAllData()
 
+       /* MyAdapter.onItemClick = {
+            val intent= Intent(this, DetailsCharacter::class.java)
+            intent.putExtra("android", it)
+            startActivity(intent)
+        }*/
     }
 
     // Creating  initRecyclerView
