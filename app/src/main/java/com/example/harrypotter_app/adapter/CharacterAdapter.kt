@@ -14,18 +14,35 @@ import de.hdodenhof.circleimageview.CircleImageView
 
 class CharacterAdapter(var con: Context, var character: List<CharacterItem>):
     RecyclerView.Adapter<CharacterAdapter.ViewHolder>() {
-    var onItemClick: ((CharacterItem) -> Unit)? = null
-    inner class ViewHolder(v: View) : RecyclerView.ViewHolder(v) {
+
+    private lateinit var mListener: onItemClickListener
+
+    interface onItemClickListener {
+        fun onItemClick(position: Int)
+    }
+
+    fun onItemClickListener (listener: onItemClickListener) {
+        mListener = listener
+    }
+
+    inner class ViewHolder(v: View, listener: onItemClickListener) : RecyclerView.ViewHolder(v) {
         var img = v.findViewById<CircleImageView>(R.id.imageCharacter)
         var name = v.findViewById<TextView>(R.id.txtName)
         var species = v.findViewById<TextView>(R.id.txtSpecies)
         var gender = v.findViewById<TextView>(R.id.txtGender)
 
+        init {
+            itemView.setOnClickListener {
+                listener.onItemClick(adapterPosition)
+            }
+        }
     }
+
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         var view = LayoutInflater.from(con).inflate(R.layout.card_character, parent, false)
-        return ViewHolder(view)
+        return ViewHolder(view, mListener)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -37,9 +54,6 @@ class CharacterAdapter(var con: Context, var character: List<CharacterItem>):
         holder.species.text = currentItem.species
         holder.gender.text = currentItem.gender
 
-        holder.itemView.setOnClickListener {
-            onItemClick?.invoke(currentItem)
-        }
     }
 
     override fun getItemCount(): Int = character.size

@@ -38,6 +38,7 @@ class MainActivity : AppCompatActivity() {
             intent.putExtra("android", it)
             startActivity(intent)
         }*/
+
     }
 
     // Creating  initRecyclerView
@@ -62,8 +63,25 @@ class MainActivity : AppCompatActivity() {
 
                 rvMain.adapter = MyAdapter
 
-
                 Log.d("data",data.toString())
+
+                MyAdapter.onItemClickListener(object : CharacterAdapter.onItemClickListener {
+                    override fun onItemClick(position: Int) {
+                        val intent = Intent(this@MainActivity, DetailsCharacter::class.java)
+                        intent.putExtra("image", data[position].image)
+                        intent.putExtra("actor", data[position].actor)
+                        intent.putExtra("name", data[position].name)
+                        intent.putExtra("gender", data[position].gender)
+                        intent.putExtra("species", data[position].species)
+                        intent.putExtra("house", data[position].house)
+                        intent.putExtra("dateOfBirth", data[position].dateOfBirth)
+                        intent.putExtra("yearOfBirth", data[position].yearOfBirth)
+                        intent.putExtra("wood", data[position].wand.wood)
+                        intent.putExtra("core", data[position].wand.core)
+                        intent.putExtra("length", data[position].wand.length)
+                        startActivity(intent)
+                    }
+                })
             }
 
             override fun onFailure(call: Call<List<CharacterItem>>, t: Throwable) {
@@ -71,6 +89,7 @@ class MainActivity : AppCompatActivity() {
             }
 
         })
+
 
     }
 
