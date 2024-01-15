@@ -1,25 +1,16 @@
-package com.example.harrypotter_app.model.modelData
+package com.example.harrypotter_app.di.model.modelData
 
 import android.os.Parcel
 import android.os.Parcelable
 
 data class CharacterItem(
     val actor: String,
-    val alive: Boolean,
-    val alternate_actors: List<String>,
-    val alternate_names: List<String>,
-    val ancestry: String,
     val dateOfBirth: String,
-    val eyeColour: String,
     val gender: String,
-    val hairColour: String,
-    val hogwartsStaff: Boolean,
-    val hogwartsStudent: Boolean,
     val house: String,
     val id: String,
     val image: String,
     val name: String,
-    val patronus: String,
     val species: String,
     val wand: Wand,
     val wizard: Boolean,
@@ -27,16 +18,7 @@ data class CharacterItem(
 ): Parcelable {
  constructor(parcel: Parcel) : this(
   parcel.readString()!!,
-  parcel.readByte() != 0.toByte(),
-  parcel.createStringArrayList()!!,
-  parcel.createStringArrayList()!!,
   parcel.readString()!!,
-  parcel.readString()!!,
-  parcel.readString()!!,
-  parcel.readString()!!,
-  parcel.readString()!!,
-  parcel.readByte() != 0.toByte(),
-  parcel.readByte() != 0.toByte(),
   parcel.readString()!!,
   parcel.readString()!!,
   parcel.readString()!!,
@@ -51,21 +33,12 @@ data class CharacterItem(
 
  override fun writeToParcel(parcel: Parcel, flags: Int) {
   parcel.writeString(actor)
-  parcel.writeByte(if (alive) 1 else 0)
-  parcel.writeStringList(alternate_actors)
-  parcel.writeStringList(alternate_names)
-  parcel.writeString(ancestry)
   parcel.writeString(dateOfBirth)
-  parcel.writeString(eyeColour)
   parcel.writeString(gender)
-  parcel.writeString(hairColour)
-  parcel.writeByte(if (hogwartsStaff) 1 else 0)
-  parcel.writeByte(if (hogwartsStudent) 1 else 0)
   parcel.writeString(house)
   parcel.writeString(id)
   parcel.writeString(image)
   parcel.writeString(name)
-  parcel.writeString(patronus)
   parcel.writeString(species)
   parcel.writeByte(if (wizard) 1 else 0)
   parcel.writeInt(yearOfBirth)

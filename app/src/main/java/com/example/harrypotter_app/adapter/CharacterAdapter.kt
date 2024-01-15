@@ -4,12 +4,11 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.harrypotter_app.R
-import com.example.harrypotter_app.model.modelData.CharacterItem
+import com.example.harrypotter_app.di.model.modelData.CharacterItem
 import de.hdodenhof.circleimageview.CircleImageView
 
 class CharacterAdapter(var con: Context, var character: List<CharacterItem>):
@@ -47,7 +46,7 @@ class CharacterAdapter(var con: Context, var character: List<CharacterItem>):
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val currentItem = character[position]
-        if (currentItem.image.length > 0) {
+        if (currentItem.image.isNotEmpty()) {
             Glide.with(con).load(currentItem.image).into(holder.img)
         } else Glide.with(con).load(R.drawable.avatar_potter).into(holder.img)
         holder.name.text = currentItem.name

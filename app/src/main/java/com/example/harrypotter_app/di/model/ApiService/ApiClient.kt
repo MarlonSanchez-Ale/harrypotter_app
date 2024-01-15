@@ -1,4 +1,4 @@
-package com.example.harrypotter_app.model.ApiService
+package com.example.harrypotter_app.di.model.ApiService
 
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -9,6 +9,6 @@ class ApiClient {
          .addConverterFactory(GsonConverterFactory.create())
          .build()
 
-     val ApiService = retrofit.create(ApiService::class.java)
+     val ApiService = retrofit.create(com.example.harrypotter_app.di.model.ApiService.ApiService::class.java)
 
 }

@@ -7,7 +7,7 @@ import android.os.Bundle
 import android.widget.ImageView
 import android.widget.TextView
 import com.bumptech.glide.Glide
-import com.example.harrypotter_app.model.modelData.CharacterItem
+import com.example.harrypotter_app.di.model.modelData.CharacterItem
 import org.w3c.dom.Text
 
 class DetailsCharacter : AppCompatActivity() {
@@ -16,8 +16,7 @@ class DetailsCharacter : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_details_character)
 
-        var con: Context
-        val txtactor: TextView = findViewById(R.id.txtActor)
+        val txtActor: TextView = findViewById(R.id.txtActor)
         val imageChar: ImageView = findViewById(R.id.imageCharacterDetails)
         val txtNameDet: TextView = findViewById(R.id.txtNameDetails)
         val txtSpecieDet: TextView = findViewById(R.id.txtSpeciesDetails)
@@ -41,12 +40,11 @@ class DetailsCharacter : AppCompatActivity() {
         val wood = bundle!!.getString("wood")
         val core = bundle!!.getString("core")
         val length = bundle!!.getInt("length")
-       // if (img?.length ?:  0) {
+        if (img?.length!! >  0) {
            Glide.with(this).load(img).into(imageChar)
-        //imageChar.setImageResource(img)
-        //} else Glide.with(this).load(R.drawable.avatar_potter).into(imageChar)
+        } else Glide.with(this).load(R.drawable.avatar_potter).into(imageChar)
 
-        txtactor.text  = actor
+        txtActor.text  = actor
         txtNameDet.text = name
         txtSpecieDet.text = species
         txtGenderDet.text = gender
